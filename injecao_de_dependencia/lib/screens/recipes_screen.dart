@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:injecao_de_dependencia/controllers/recipes_controller.dart';
 
+import '../widgets/recipe_widget.dart';
 
 /*
   *A injeção de dependencia é uma teccnica de programação que permite gerenciar dependencias de forma clara e desacoplada
@@ -13,11 +15,21 @@ class RecipesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final recipesCtrl = RecipesController();
+    final recipes = recipesCtrl.recipes;
     return Scaffold(
       appBar: AppBar(
-        title: const Text(''),
+        title: const Text('Lista de Receitas'),
       ),
-      body: Container(),
+      body: ListView.builder(
+        itemCount: recipes.length,
+        itemBuilder: (context, index) {
+          return RecipeWidget(
+            recipe: recipes[index],
+            recipesCtrl: recipesCtrl,
+          );
+        },
+      ),
     );
   }
 }
