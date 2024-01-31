@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gerencia_de_estado/widgets/mobx/home_mobx_widget.dart';
+
+import '../widgets/getx/home_getx_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -10,7 +11,7 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Satate Management App'),
       ),
-      body: const HomeMobxWidget(),
+      body: const HomeGetxWidget(),
     );
   }
 }
