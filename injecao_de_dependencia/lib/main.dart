@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:injecao_de_dependencia/controllers/recipes_controller.dart';
-import 'package:injecao_de_dependencia/screens/inherited_screen/inherited_recipes_screen.dart';
-import 'package:injecao_de_dependencia/screens/recipes_screen.dart';
-import 'package:injecao_de_dependencia/widgets/inherited/recipes_inherted_widget.dart';
+import 'package:provider/provider.dart';
+
+import 'screens/provider_screen/provider_recipes_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,9 +20,9 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: RecipesInhertedWidget(
-        recipesController: RecipesController(),
-        child: const InheritedRecipesScreen(),
+      home: Provider(
+        create: (context) => RecipesController(),
+        child: const ProviderRecipesScreen(),
       ),
     );
   }
