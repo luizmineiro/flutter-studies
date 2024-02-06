@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/instance_manager.dart';
 import 'package:injecao_de_dependencia/controllers/recipes_controller.dart';
 import 'package:injecao_de_dependencia/models/recipe_model.dart';
-import 'package:provider/provider.dart';
 
 class ProviderRecipeFavoriteButtonWidget extends StatelessWidget {
   final RecipeModel recipe;

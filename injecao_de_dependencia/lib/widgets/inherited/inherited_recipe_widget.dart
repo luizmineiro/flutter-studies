@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../controllers/recipes_controller.dart';
 import '../../models/recipe_model.dart';
 import 'inherited_recipe_favorite_button_widget.dart';
 import 'inherited_recipe_info_widget.dart';

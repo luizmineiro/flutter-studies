@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:injecao_de_dependencia/controllers/recipes_controller.dart';
 import 'package:injecao_de_dependencia/widgets/inherited/recipes_inherted_widget.dart';
 
 import '../../widgets/inherited/inherited_recipe_widget.dart';
