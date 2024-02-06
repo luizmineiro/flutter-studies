@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:get/instance_manager.dart';
+import 'package:get_it/get_it.dart';
 import 'package:injecao_de_dependencia/controllers/recipes_controller.dart';
 
-import '../../widgets/getx/getx_recipe_widget.dart';
+import '../../widgets/get_it/get_it_recipe_widget.dart';
 /*
   *A injeção de dependencia é uma teccnica de programação que permite gerenciar dependencias de forma clara e desacoplada
   *Em vez de uma classe criar suas proprias dependencias elas são fornecidas externamente 
@@ -10,13 +10,16 @@ import '../../widgets/getx/getx_recipe_widget.dart';
   *Isso ajuda a manter o codigo limpo e organizado, tornando mais facil a manutenção do app 
 */
 
-class GetxRecipesScreen extends StatelessWidget {
-  const GetxRecipesScreen({super.key});
+class GetItRecipesScreen extends StatelessWidget {
+  const GetItRecipesScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    Get.lazyPut(() => RecipesController());
-    final recipesCtrl = Get.find<RecipesController>();
+    final getIt = GetIt.instance;
+
+    getIt.registerLazySingleton(() => RecipesController());
+
+    final recipesCtrl = getIt.get<RecipesController>();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Lista de Receitas'),
@@ -24,7 +27,7 @@ class GetxRecipesScreen extends StatelessWidget {
       body: ListView.builder(
         itemCount: recipesCtrl.recipes.length,
         itemBuilder: (context, index) {
-          return GetxRecipeWidget(
+          return GetItRecipeWidget(
             recipe: recipesCtrl.recipes[index],
           );
         },

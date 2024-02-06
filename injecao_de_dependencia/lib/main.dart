@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:injecao_de_dependencia/screens/getx_screen/getx_recipes_screen.dart';
+import 'package:injecao_de_dependencia/screens/get_it_screen/get_it_recipes_screen.dart';
 
 
 void main() {
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const GetxRecipesScreen()
+      home: const GetItRecipesScreen()
     );
   }
 }
