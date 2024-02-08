@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:local_storage/controllers/to_buy_list_controller.dart';
+import 'package:local_storage/controllers/storage_to_buy_list_controller.dart';
 import 'package:local_storage/models/to_buy_model.dart';
 import 'package:provider/provider.dart';
 
@@ -9,7 +9,7 @@ class ToBuyItemListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final toBuyListCtrl = Provider.of<ToBuyListController>(context);
+    final toBuyListCtrl = Provider.of<StorageToBuyListController>(context);
     return Container(
       margin: const EdgeInsets.all(12),
       padding: const EdgeInsets.all(12),

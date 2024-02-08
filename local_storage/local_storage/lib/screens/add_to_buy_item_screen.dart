@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:local_storage/controllers/to_buy_list_controller.dart';
+import 'package:local_storage/controllers/storage_to_buy_list_controller.dart';
 import 'package:provider/provider.dart';
 
 class AddToBuyItemScreen extends StatefulWidget {
@@ -14,7 +14,7 @@ class _AddToBuyItemScreenState extends State<AddToBuyItemScreen> {
   final _titleTEC = TextEditingController();
   final _descriptionTEC = TextEditingController();
 
-  void _onSubmitForm(ToBuyListController buyListController) {
+  void _onSubmitForm(StorageToBuyListController buyListController) {
     if (_formKey.currentState!.validate()) {
       buyListController.onAddToBuyItem(_titleTEC.text, _descriptionTEC.text);
     }
@@ -23,7 +23,7 @@ class _AddToBuyItemScreenState extends State<AddToBuyItemScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final toBuyListCtrl = Provider.of<ToBuyListController>(context);
+    final toBuyListCtrl = Provider.of<StorageToBuyListController>(context);
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.blueGrey,

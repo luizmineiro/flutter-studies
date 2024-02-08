@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:local_storage/controllers/to_buy_list_controller.dart';
+import 'package:local_storage/controllers/storage_to_buy_list_controller.dart';
 import 'package:provider/provider.dart';
 
 import '../widgets/to_buy_item_list_widget.dart';
@@ -10,7 +10,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final toBuyListCtrl = Provider.of<ToBuyListController>(context);
+    final toBuyListCtrl = Provider.of<StorageToBuyListController>(context);
     return Scaffold(
       appBar: AppBar(
         actions: [
