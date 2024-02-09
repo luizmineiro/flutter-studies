@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:local_storage/erros/exeptions.dart';
 import 'package:local_storage/models/to_buy_model.dart';
+import 'package:local_storage/repositories/sqflite/sqflite_to_buy_Local_data_repository.dart';
 import 'package:uuid/uuid.dart';
 
 import '../repositories/shared_preferences/shared_preferences_to_buy_local_data_repository.dart';
 
 class StorageToBuyListController extends ChangeNotifier {
-  final SharedPreferencesToBuyLocalDataRepository
-      sharedPreferencesToBuyLocalDataRepository;
+  final SqfliteToBuyLocalDataRepository toBuyLocalDataRepository;
 
-  StorageToBuyListController(this.sharedPreferencesToBuyLocalDataRepository) {
+  StorageToBuyListController(this.toBuyLocalDataRepository) {
     onLoadToBuyList();
   }
 
@@ -20,7 +20,7 @@ class StorageToBuyListController extends ChangeNotifier {
   Future<void> onLoadToBuyList() async {
     try {
       toBuyList.addAll(
-        await sharedPreferencesToBuyLocalDataRepository.loadToBuyList(),
+        await toBuyLocalDataRepository.loadToBuyList(),
       );
       notifyListeners();
     } on RepositoryExeptions catch (sharedPreferencesErro) {
@@ -34,7 +34,7 @@ class StorageToBuyListController extends ChangeNotifier {
     try {
       toBuyList.removeWhere((ToBuyModel toBuyModel) => toBuyModel.id == id);
       notifyListeners();
-      await sharedPreferencesToBuyLocalDataRepository.removeToBuyItem(id);
+      await toBuyLocalDataRepository.removeToBuyItem(id);
     } on RepositoryExeptions catch (sharedPreferencesErro) {
       erro = sharedPreferencesErro.message;
     } catch (_) {
@@ -51,7 +51,7 @@ class StorageToBuyListController extends ChangeNotifier {
       );
       toBuyList.add(itemToAdd);
       notifyListeners();
-      await sharedPreferencesToBuyLocalDataRepository.addToBuyItem(itemToAdd);
+      await toBuyLocalDataRepository.addToBuyItem(itemToAdd);
     } on RepositoryExeptions catch (sharedPreferencesErro) {
       erro = sharedPreferencesErro.message;
     } catch (_) {
