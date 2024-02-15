@@ -3,8 +3,10 @@ import 'package:local_storage/controllers/storage_to_buy_list_controller.dart';
 import 'package:local_storage/models/to_buy_model.dart';
 import 'package:provider/provider.dart';
 
+import '../models/hive_to_buy_model.dart';
+
 class ToBuyItemListWidget extends StatelessWidget {
-  final ToBuyModel toBuyModel;
+  final HiveToBuyModel toBuyModel;
   const ToBuyItemListWidget({super.key, required this.toBuyModel});
 
   @override

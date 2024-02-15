@@ -4,7 +4,7 @@ import 'package:local_storage/models/to_buy_model.dart';
 import 'package:local_storage/repositories/sqflite/sqflite_to_buy_Local_data_repository.dart';
 import 'package:uuid/uuid.dart';
 
-import '../repositories/shared_preferences/shared_preferences_to_buy_local_data_repository.dart';
+import '../models/hive_to_buy_model.dart';
 
 class StorageToBuyListController extends ChangeNotifier {
   final SqfliteToBuyLocalDataRepository toBuyLocalDataRepository;
@@ -13,14 +13,15 @@ class StorageToBuyListController extends ChangeNotifier {
     onLoadToBuyList();
   }
 
-  final List<ToBuyModel> toBuyList = [];
+  final List<HiveToBuyModel> toBuyList = [];
 
   String? erro;
 
   Future<void> onLoadToBuyList() async {
     try {
       toBuyList.addAll(
-        await toBuyLocalDataRepository.loadToBuyList(),
+        (await toBuyLocalDataRepository.loadToBuyList())
+            as Iterable<HiveToBuyModel>,
       );
       notifyListeners();
     } on RepositoryExeptions catch (sharedPreferencesErro) {
@@ -32,7 +33,7 @@ class StorageToBuyListController extends ChangeNotifier {
 
   Future<void> onDeleteToBuyItem(String id) async {
     try {
-      toBuyList.removeWhere((ToBuyModel toBuyModel) => toBuyModel.id == id);
+      toBuyList.removeWhere((HiveToBuyModel toBuyModel) => toBuyModel.id == id);
       notifyListeners();
       await toBuyLocalDataRepository.removeToBuyItem(id);
     } on RepositoryExeptions catch (sharedPreferencesErro) {
@@ -44,14 +45,14 @@ class StorageToBuyListController extends ChangeNotifier {
 
   Future<void> onAddToBuyItem(String title, String description) async {
     try {
-      final itemToAdd = ToBuyModel(
+      final itemToAdd = HiveToBuyModel(
         id: const Uuid().v4(),
         title: title,
         description: description,
       );
       toBuyList.add(itemToAdd);
       notifyListeners();
-      await toBuyLocalDataRepository.addToBuyItem(itemToAdd);
+      await toBuyLocalDataRepository.addToBuyItem(itemToAdd as ToBuyModel);
     } on RepositoryExeptions catch (sharedPreferencesErro) {
       erro = sharedPreferencesErro.message;
     } catch (_) {
